@@ -3,7 +3,7 @@ import './ClientsSlider.css';
 
 const ClientsSlider = () => {
     // Dynamically import all image files from the assets/clients directory
-    const logoImports = import.meta.glob('../assets/clients/*.{png,jpg,jpeg,svg}', { eager: true, as: 'url' });
+    const logoImports = import.meta.glob('../assets/clients/*.{png,jpg,jpeg,svg}', { eager: true, query: '?url', import: 'default' });
 
     const [clients, setClients] = useState([]);
 
