@@ -1,0 +1,31 @@
+.faq-section {
+    background-color: var(--color-cool-light-gray);
+}
+
+.faq-grid {
+    max-width: 900px;
+    margin: 0 auto var(--space-12);
+}
+
+.accordion-item {
+    background-color: var(--color-white);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-4);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+.accordion-content {
+    overflow: hidden;
+}
+
+.faq-cta {
+    text-align: center;
+    margin-top: var(--space-12);
+}
+
+.faq-cta p {
+    font-size: var(--text-xl);
+    color: var(--color-jet);
+    margin-bottom: var(--space-4);
+}

@@ -1,0 +1,35 @@
+.footer-logo {
+    height: 60px;
+    width: auto;
+    margin-bottom: var(--space-4);
+}
+
+.footer-newsletter p {
+    margin-bottom: var(--space-3);
+}
+
+.footer-newsletter-form {
+    display: flex;
+    gap: var(--space-2);
+}
+
+.footer-newsletter-form .btn {
+    flex-shrink: 0;
+}
+
+.footer-credit {
+    text-align: center;
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+}
+
+.footer-credit a {
+    color: var(--color-athene-orange);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.footer-credit a:hover {
+    color: var(--color-white);
+}
