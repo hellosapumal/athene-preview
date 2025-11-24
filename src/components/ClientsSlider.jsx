@@ -1,72 +1,54 @@
 import { useEffect, useState } from 'react';
 import './ClientsSlider.css';
 
+// Import all client logos directly
+import logo1 from '../assets/clients/Adamjee & Luckmanjee (Pvt) Ltd.jpg';
+import logo2 from '../assets/clients/Animal Venom Research Institute_Galaha.png';
+import logo3 from '../assets/clients/CDP Lanka_Battaramulla.jpg';
+import logo4 from '../assets/clients/CML Edwards Plant Complex_Sapugaskanda.jpg';
+import logo5 from '../assets/clients/Cape Weligama.jpg';
+import logo6 from '../assets/clients/Durdens Hospital Laboratories _Kalubowila, Norris Cannel, Anuradhapura, Jaffna.jpg';
+import logo7 from '../assets/clients/Durdens Hospital – Kollupitiya.jpg';
+import logo8 from '../assets/clients/EPIC Lanka (Pvt) Ltd.png';
+import logo9 from '../assets/clients/Elizabeth Moir Senior & Junior International Schools.jpg';
+import logo10 from '../assets/clients/Expo Grand Complex_Kotahena.jpg';
+import logo11 from '../assets/clients/Fenex Engineering (Pvt) Ltd_Homagama, Matara, Kotahena.jpg';
+import logo12 from '../assets/clients/Glorius Residencies_Colombo.png';
+import logo13 from '../assets/clients/ICC LAMC Project_Dehiwala And ICC Departmental Store Complex Project_Wellawatte.jpg';
+import logo14 from '../assets/clients/Meridian Apartment_Rajagiriya.jpg';
+import logo15 from '../assets/clients/Tess Lanka Rice Mills_Aralaganwila.png';
+import logo16 from '../assets/clients/Tudawe Engineering.jpg';
+import logo17 from '../assets/clients/YWCA_Colombo.png';
+
 const ClientsSlider = () => {
-    // Dynamically import all image files from the assets/clients directory
-    const logoImports = import.meta.glob('../assets/clients/*.{png,jpg,jpeg,svg}', { eager: true, query: '?url', import: 'default' });
-
-    const [clients, setClients] = useState([]);
-
-    useEffect(() => {
-        // Transform the imported object into an array of client objects
-        const loadedClients = Object.entries(logoImports).map(([path, url], index) => {
-            // Extract filename from path (e.g., "../assets/clients/TechCorp.png" -> "TechCorp")
-            // Handle multiple extensions by splitting by dot and taking the first part(s)
-            const fileNameWithExt = path.split('/').pop();
-            const fileName = fileNameWithExt.substring(0, fileNameWithExt.lastIndexOf('.'));
-
-            // Format name: Replace hyphens/underscores with spaces and capitalize
-            const formattedName = fileName
-                .replace(/[-_]/g, ' ')
-                .replace(/\b\w/g, char => char.toUpperCase());
-
-            return {
-                id: index,
-                name: formattedName,
-                logo: url
-            };
-        });
-
-        setClients(loadedClients);
-    }, []);
-
-    // If no clients are loaded yet (folder is empty), we can show a message or nothing
-    // For now, let's handle the empty state gracefully or show placeholders if needed.
-    // But user specifically asked to get from folder. 
+    const clients = [
+        { id: 1, name: 'Adamjee & Luckmanjee', logo: logo1 },
+        { id: 2, name: 'Animal Venom Research Institute', logo: logo2 },
+        { id: 3, name: 'CDP Lanka', logo: logo3 },
+        { id: 4, name: 'CML Edwards Plant Complex', logo: logo4 },
+        { id: 5, name: 'Cape Weligama', logo: logo5 },
+        { id: 6, name: 'Durdens Hospital Laboratories', logo: logo6 },
+        { id: 7, name: 'Durdens Hospital', logo: logo7 },
+        { id: 8, name: 'EPIC Lanka', logo: logo8 },
+        { id: 9, name: 'Elizabeth Moir Schools', logo: logo9 },
+        { id: 10, name: 'Expo Grand Complex', logo: logo10 },
+        { id: 11, name: 'Fenex Engineering', logo: logo11 },
+        { id: 12, name: 'Glorius Residencies', logo: logo12 },
+        { id: 13, name: 'ICC LAMC Project', logo: logo13 },
+        { id: 14, name: 'Meridian Apartment', logo: logo14 },
+        { id: 15, name: 'Tess Lanka Rice Mills', logo: logo15 },
+        { id: 16, name: 'Tudawe Engineering', logo: logo16 },
+        { id: 17, name: 'YWCA Colombo', logo: logo17 },
+    ];
 
     // Duplicate clients to create seamless loop
-    // For horizontal scroll, we need enough duplicates to fill the screen width + buffer
-    const duplicatedClients = clients.length > 0
-        ? [...clients, ...clients, ...clients, ...clients]
-        : [];
-
-    // Split clients into two groups for variety if we have enough, otherwise just use same list
     const midPoint = Math.ceil(clients.length / 2);
-    const firstRowClients = clients.length > 0 ? [...clients, ...clients, ...clients, ...clients] : [];
-    // For the second row, maybe shift the order or use the same
-    const secondRowClients = clients.length > 0 ? [...clients.slice(midPoint), ...clients.slice(0, midPoint), ...clients.slice(midPoint), ...clients.slice(0, midPoint), ...clients.slice(midPoint), ...clients.slice(0, midPoint), ...clients.slice(midPoint), ...clients.slice(0, midPoint)] : [];
-
-
-    if (clients.length === 0) {
-        return (
-            <section className="clients-section py-20">
-                <div className="container">
-                    <div className="section-header text-center mb-12">
-                        <h2>Our Valued Clients</h2>
-                        <p>Trusted by leading organizations across industries</p>
-                    </div>
-                    <div className="text-center text-gray-500 py-10 bg-gray-50 rounded-lg border border-dashed border-gray-300">
-                        <p>No client logos found.</p>
-                        <p className="text-sm mt-2">Please add .png, .jpg, .jpeg, or .svg files to <code>src/assets/clients</code></p>
-                    </div>
-                </div>
-            </section>
-        );
-    }
+    const firstRowClients = [...clients, ...clients, ...clients, ...clients];
+    const secondRowClients = [...clients.slice(midPoint), ...clients.slice(0, midPoint), ...clients.slice(midPoint), ...clients.slice(0, midPoint), ...clients.slice(midPoint), ...clients.slice(0, midPoint), ...clients.slice(midPoint), ...clients.slice(0, midPoint)];
 
     return (
         <section className="clients-section py-20">
-            <div className="container-fluid"> {/* Use fluid container for full width feel or standard container */}
+            <div className="container-fluid">
                 <div className="container">
                     <div className="section-header text-left mb-12">
                         <h2>Our Valued Clients</h2>
